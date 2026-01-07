@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,379 +11,376 @@
             box-sizing: border-box;
         }
 
-
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 50%, #fde68a 100%);
-        min-height: 100vh;
-        padding: 10px;
-    }
-
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .card {
-        background: white;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        padding: 20px;
-        margin-bottom: 15px;
-    }
-
-    .header {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .header h1 {
-        color: #92400e;
-        font-size: clamp(1.5em, 5vw, 2.5em);
-        margin-bottom: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        flex-wrap: wrap;
-    }
-
-    .pyramid-icon {
-        width: clamp(30px, 8vw, 40px);
-        height: clamp(30px, 8vw, 40px);
-        flex-shrink: 0;
-    }
-
-    .input-section {
-        background: linear-gradient(135deg, #d97706 0%, #ea580c 100%);
-        padding: 20px;
-        border-radius: 15px;
-        margin-bottom: 20px;
-    }
-
-    .input-group {
-        margin-bottom: 15px;
-    }
-
-    .input-group label {
-        display: block;
-        color: white;
-        font-size: clamp(1em, 3vw, 1.1em);
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
-
-    .input-group input {
-        width: 100%;
-        padding: 12px;
-        font-size: clamp(1em, 4vw, 1.2em);
-        border: 3px solid #fbbf24;
-        border-radius: 10px;
-        outline: none;
-        text-transform: uppercase;
-    }
-
-    .input-group input:focus {
-        border-color: #fde047;
-        box-shadow: 0 0 0 3px rgba(253, 224, 71, 0.3);
-    }
-
-    .calculate-btn {
-        width: 100%;
-        padding: 15px;
-        font-size: clamp(1.1em, 4vw, 1.3em);
-        font-weight: bold;
-        color: white;
-        background: linear-gradient(135deg, #15803d 0%, #16a34a 100%);
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: transform 0.2s;
-        touch-action: manipulation;
-    }
-
-    .calculate-btn:active {
-        transform: scale(0.98);
-    }
-
-    .result-section {
-        display: none;
-    }
-
-    .result-section.active {
-        display: block;
-    }
-
-    .business-name-display {
-        background: linear-gradient(135deg, #d97706 0%, #ea580c 100%);
-        color: white;
-        padding: 15px;
-        border-radius: 15px;
-        text-align: center;
-        margin-bottom: 20px;
-        word-wrap: break-word;
-    }
-
-    .business-name-display h2 {
-        font-size: clamp(1.2em, 5vw, 2em);
-        margin-bottom: 5px;
-        line-height: 1.3;
-    }
-
-    .business-name-display p {
-        color: #fef3c7;
-        font-size: clamp(0.8em, 3vw, 1em);
-    }
-
-    .pyramid-container {
-        background: linear-gradient(to bottom, #fef3c7 0%, #fed7aa 100%);
-        padding: 20px 10px;
-        border-radius: 15px;
-        border: 3px solid #d97706;
-        overflow-x: auto;
-        margin-bottom: 20px;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .pyramid {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        min-width: max-content;
-        padding: 10px 0;
-    }
-
-    .pyramid-row {
-        display: flex;
-        gap: 6px;
-        justify-content: center;
-        flex-wrap: nowrap;
-    }
-
-    .pyramid-cell {
-        font-family: 'Courier New', monospace;
-        font-weight: bold;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 6px;
-        transition: transform 0.2s;
-        flex-shrink: 0;
-    }
-
-    .pyramid-cell:active {
-        transform: scale(1.05);
-    }
-
-    .letter-cell {
-        background: #fef3c7;
-        color: #92400e;
-        border: 2px solid #d97706;
-        padding: 6px 8px;
-        min-width: 32px;
-        font-size: clamp(0.9em, 3vw, 1.25em);
-    }
-
-    .number-cell {
-        background: #fed7aa;
-        color: #9a3412;
-        border: 2px solid #ea580c;
-        padding: 6px 8px;
-        min-width: 28px;
-        font-size: clamp(0.8em, 3vw, 1em);
-    }
-
-    .reduced-cell {
-        background: #fde68a;
-        color: #78350f;
-        border: 1px solid #d97706;
-        padding: 5px 8px;
-        min-width: 26px;
-        font-size: clamp(0.75em, 2.5vw, 0.95em);
-    }
-
-    .final-cell {
-        background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-        color: white;
-        border: 4px solid #b45309;
-        padding: 15px;
-        min-width: 60px;
-        min-height: 60px;
-        font-size: clamp(2em, 8vw, 3em);
-        border-radius: 12px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    }
-
-    .explanation {
-        background: #dbeafe;
-        padding: 15px;
-        border-radius: 15px;
-        border: 2px solid #3b82f6;
-        margin-bottom: 15px;
-    }
-
-    .explanation h3 {
-        color: #1e40af;
-        margin-bottom: 12px;
-        font-size: clamp(1em, 4vw, 1.2em);
-    }
-
-    .explanation ol {
-        margin-left: 20px;
-        color: #1e3a8a;
-    }
-
-    .explanation li {
-        margin-bottom: 8px;
-        line-height: 1.6;
-        font-size: clamp(0.85em, 3vw, 1em);
-    }
-
-    .meaning-section {
-        background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-        padding: 15px;
-        border-radius: 15px;
-        border: 2px solid #059669;
-        margin-bottom: 15px;
-    }
-
-    .meaning-section h3 {
-        color: #065f46;
-        font-size: clamp(1.2em, 4vw, 1.8em);
-        margin-bottom: 10px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        flex-wrap: wrap;
-    }
-
-    .meaning-section h3 svg {
-        flex-shrink: 0;
-    }
-
-    .meaning-section h4 {
-        color: #047857;
-        font-size: clamp(1em, 3.5vw, 1.3em);
-        margin-bottom: 8px;
-    }
-
-    .meaning-section p {
-        color: #064e3b;
-        line-height: 1.7;
-        margin-bottom: 12px;
-        font-size: clamp(0.9em, 3vw, 1em);
-    }
-
-    .dental-note {
-        background: white;
-        padding: 15px;
-        border-radius: 10px;
-        margin-top: 12px;
-    }
-
-    .dental-note h4 {
-        color: #065f46;
-        margin-bottom: 8px;
-        font-size: clamp(0.95em, 3vw, 1.1em);
-    }
-
-    .dental-note p {
-        font-size: clamp(0.85em, 3vw, 0.95em);
-    }
-
-    .chaldean-chart {
-        background: white;
-        padding: 20px;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-
-    .chaldean-chart h3 {
-        color: #92400e;
-        margin-bottom: 15px;
-        font-size: clamp(1.1em, 4vw, 1.3em);
-    }
-
-    .chart-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-        gap: 10px;
-        margin-bottom: 12px;
-    }
-
-    .chart-item {
-        background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
-        padding: 12px;
-        border-radius: 10px;
-        border: 2px solid #d97706;
-        text-align: center;
-    }
-
-    .chart-number {
-        font-size: clamp(1.5em, 5vw, 2em);
-        font-weight: bold;
-        color: #92400e;
-        margin-bottom: 5px;
-    }
-
-    .chart-letters {
-        font-size: clamp(0.75em, 2.5vw, 0.9em);
-        font-weight: 600;
-        color: #78350f;
-        word-wrap: break-word;
-    }
-
-    .note {
-        text-align: center;
-        color: #78350f;
-        font-style: italic;
-        margin-top: 12px;
-        font-size: clamp(0.8em, 3vw, 0.9em);
-    }
-
-    @media (min-width: 769px) {
-        .calculate-btn:hover {
-            transform: scale(1.02);
-        }
-        
-        .pyramid-cell:hover {
-            transform: scale(1.1);
-        }
-    }
-
-    @media (max-width: 480px) {
         body {
-            padding: 8px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 50%, #fde68a 100%);
+            min-height: 100vh;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            color: #92400e;
+            font-size: clamp(1.5em, 5vw, 2.5em);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .pyramid-icon {
+            width: clamp(30px, 8vw, 40px);
+            height: clamp(30px, 8vw, 40px);
+            flex-shrink: 0;
+        }
+
+        .input-section {
+            background: linear-gradient(135deg, #d97706 0%, #ea580c 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            color: white;
+            font-size: clamp(1em, 3vw, 1.1em);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            font-size: clamp(1em, 4vw, 1.2em);
+            border: 3px solid #fbbf24;
+            border-radius: 10px;
+            outline: none;
+            text-transform: uppercase;
+        }
+
+        .input-group input:focus {
+            border-color: #fde047;
+            box-shadow: 0 0 0 3px rgba(253, 224, 71, 0.3);
+        }
+
+        .calculate-btn {
+            width: 100%;
             padding: 15px;
-            border-radius: 12px;
+            font-size: clamp(1.1em, 4vw, 1.3em);
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #15803d 0%, #16a34a 100%);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            touch-action: manipulation;
+        }
+
+        .calculate-btn:active {
+            transform: scale(0.98);
+        }
+
+        .result-section {
+            display: none;
+        }
+
+        .result-section.active {
+            display: block;
+        }
+
+        .business-name-display {
+            background: linear-gradient(135deg, #d97706 0%, #ea580c 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            word-wrap: break-word;
+        }
+
+        .business-name-display h2 {
+            font-size: clamp(1.2em, 5vw, 2em);
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+
+        .business-name-display p {
+            color: #fef3c7;
+            font-size: clamp(0.8em, 3vw, 1em);
         }
 
         .pyramid-container {
-            padding: 15px 8px;
+            background: linear-gradient(to bottom, #fef3c7 0%, #fed7aa 100%);
+            padding: 20px 10px;
+            border-radius: 15px;
+            border: 3px solid #d97706;
+            overflow-x: auto;
+            margin-bottom: 20px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .pyramid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            min-width: max-content;
+            padding: 10px 0;
+        }
+
+        .pyramid-row {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            flex-wrap: nowrap;
+        }
+
+        .pyramid-cell {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            transition: transform 0.2s;
+            flex-shrink: 0;
+        }
+
+        .pyramid-cell:active {
+            transform: scale(1.05);
+        }
+
+        .letter-cell {
+            background: #fef3c7;
+            color: #92400e;
+            border: 2px solid #d97706;
+            padding: 6px 8px;
+            min-width: 32px;
+            font-size: clamp(0.9em, 3vw, 1.25em);
+        }
+
+        .number-cell {
+            background: #fed7aa;
+            color: #9a3412;
+            border: 2px solid #ea580c;
+            padding: 6px 8px;
+            min-width: 28px;
+            font-size: clamp(0.8em, 3vw, 1em);
+        }
+
+        .reduced-cell {
+            background: #fde68a;
+            color: #78350f;
+            border: 1px solid #d97706;
+            padding: 5px 8px;
+            min-width: 26px;
+            font-size: clamp(0.75em, 2.5vw, 0.95em);
+        }
+
+        .final-cell {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: white;
+            border: 4px solid #b45309;
+            padding: 15px;
+            min-width: 60px;
+            min-height: 60px;
+            font-size: clamp(2em, 8vw, 3em);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .explanation {
+            background: #dbeafe;
+            padding: 15px;
+            border-radius: 15px;
+            border: 2px solid #3b82f6;
+            margin-bottom: 15px;
+        }
+
+        .explanation h3 {
+            color: #1e40af;
+            margin-bottom: 12px;
+            font-size: clamp(1em, 4vw, 1.2em);
+        }
+
+        .explanation ol {
+            margin-left: 20px;
+            color: #1e3a8a;
+        }
+
+        .explanation li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+            font-size: clamp(0.85em, 3vw, 1em);
+        }
+
+        .meaning-section {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            padding: 15px;
+            border-radius: 15px;
+            border: 2px solid #059669;
+            margin-bottom: 15px;
+        }
+
+        .meaning-section h3 {
+            color: #065f46;
+            font-size: clamp(1.2em, 4vw, 1.8em);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .meaning-section h3 svg {
+            flex-shrink: 0;
+        }
+
+        .meaning-section h4 {
+            color: #047857;
+            font-size: clamp(1em, 3.5vw, 1.3em);
+            margin-bottom: 8px;
+        }
+
+        .meaning-section p {
+            color: #064e3b;
+            line-height: 1.7;
+            margin-bottom: 12px;
+            font-size: clamp(0.9em, 3vw, 1em);
+        }
+
+        .dental-note {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 12px;
+        }
+
+        .dental-note h4 {
+            color: #065f46;
+            margin-bottom: 8px;
+            font-size: clamp(0.95em, 3vw, 1.1em);
+        }
+
+        .dental-note p {
+            font-size: clamp(0.85em, 3vw, 0.95em);
+        }
+
+        .chaldean-chart {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .chaldean-chart h3 {
+            color: #92400e;
+            margin-bottom: 15px;
+            font-size: clamp(1.1em, 4vw, 1.3em);
         }
 
         .chart-grid {
-            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-            gap: 8px;
-        }
-    }
-
-    @media (max-width: 360px) {
-        .pyramid-row {
-            gap: 4px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 10px;
+            margin-bottom: 12px;
         }
 
-        .letter-cell, .number-cell, .reduced-cell {
-            padding: 4px 6px;
+        .chart-item {
+            background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+            padding: 12px;
+            border-radius: 10px;
+            border: 2px solid #d97706;
+            text-align: center;
         }
-    }
-</style>
 
+        .chart-number {
+            font-size: clamp(1.5em, 5vw, 2em);
+            font-weight: bold;
+            color: #92400e;
+            margin-bottom: 5px;
+        }
 
+        .chart-letters {
+            font-size: clamp(0.75em, 2.5vw, 0.9em);
+            font-weight: 600;
+            color: #78350f;
+            word-wrap: break-word;
+        }
+
+        .note {
+            text-align: center;
+            color: #78350f;
+            font-style: italic;
+            margin-top: 12px;
+            font-size: clamp(0.8em, 3vw, 0.9em);
+        }
+
+        @media (min-width: 769px) {
+            .calculate-btn:hover {
+                transform: scale(1.02);
+            }
+            
+            .pyramid-cell:hover {
+                transform: scale(1.1);
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 8px;
+            }
+
+            .card {
+                padding: 15px;
+                border-radius: 12px;
+            }
+
+            .pyramid-container {
+                padding: 15px 8px;
+            }
+
+            .chart-grid {
+                grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .pyramid-row {
+                gap: 4px;
+            }
+
+            .letter-cell, .number-cell, .reduced-cell {
+                padding: 4px 6px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -398,262 +394,278 @@
                 </h1>
             </div>
 
-
-        <div class="input-section">
-            <div class="input-group">
-                <label for="nameInput">Enter Name or Business Name:</label>
-                <input type="text" id="nameInput" placeholder="e.g., TYPE NAME" />
+            <div class="input-section">
+                <div class="input-group">
+                    <label for="nameInput">Enter Name or Business Name:</label>
+                    <input type="text" id="nameInput" placeholder="e.g., TYPE NAME" />
+                </div>
+                <button class="calculate-btn" onclick="calculatePyramid()">Calculate Pyramid</button>
             </div>
-            <button class="calculate-btn" onclick="calculatePyramid()">Calculate Pyramid</button>
+
+            <div class="result-section" id="resultSection">
+                <div class="business-name-display" id="businessNameDisplay"></div>
+                
+                <div class="pyramid-container">
+                    <div class="pyramid" id="pyramidDisplay"></div>
+                </div>
+
+                <div class="explanation">
+                    <h3>📐 How the Pyramid Works:</h3>
+                    <ol>
+                        <li><strong>Step 1:</strong> Each letter is converted to its Chaldean number value</li>
+                        <li><strong>Step 2:</strong> Add each pair of adjacent numbers together</li>
+                        <li><strong>Step 3:</strong> If the sum is greater than 9, reduce it to a single digit (add the digits together)</li>
+                        <li><strong>Step 4:</strong> Keep master numbers 11, 22, and 33 intact</li>
+                        <li><strong>Step 5:</strong> Repeat until you reach a single number at the bottom</li>
+                    </ol>
+                </div>
+
+                <div class="meaning-section" id="meaningSection"></div>
+            </div>
         </div>
 
-        <div class="result-section" id="resultSection">
-            <div class="business-name-display" id="businessNameDisplay"></div>
-            
-            <div class="pyramid-container">
-                <div class="pyramid" id="pyramidDisplay"></div>
-            </div>
-
-            <div class="explanation">
-                <h3>📐 How the Pyramid Works:</h3>
-                <ol>
-                    <li><strong>Step 1:</strong> Each letter is converted to its Chaldean number value</li>
-                    <li><strong>Step 2:</strong> Add each pair of adjacent numbers together</li>
-                    <li><strong>Step 3:</strong> If the sum is greater than 9, reduce it to a single digit (add the digits together)</li>
-                    <li><strong>Step 4:</strong> Keep master numbers 11, 22, and 33 intact</li>
-                    <li><strong>Step 5:</strong> Repeat until you reach a single number at the bottom</li>
-                </ol>
-            </div>
-
-            <div class="meaning-section" id="meaningSection"></div>
+        <div class="card chaldean-chart">
+            <h3>📊 Chaldean Numerology Chart</h3>
+            <div class="chart-grid" id="chartGrid"></div>
+            <p class="note">Note: Number 9 is not used in Chaldean numerology</p>
         </div>
     </div>
 
-    <div class="card chaldean-chart">
-        <h3>📊 Chaldean Numerology Chart</h3>
-        <div class="chart-grid" id="chartGrid"></div>
-        <p class="note">Note: Number 9 is not used in Chaldean numerology</p>
-    </div>
-</div>
+    <script>
+        const chaldeanChart = {
+            'A': 1, 'I': 1, 'J': 1, 'Q': 1, 'Y': 1,
+            'B': 2, 'K': 2, 'R': 2,
+            'C': 3, 'G': 3, 'L': 3, 'S': 3,
+            'D': 4, 'M': 4, 'T': 4,
+            'E': 5, 'H': 5, 'N': 5, 'X': 5,
+            'U': 6, 'V': 6, 'W': 6,
+            'O': 7, 'Z': 7,
+            'F': 8, 'P': 8
+        };
 
-<script>
-    const chaldeanChart = {
-        'A': 1, 'I': 1, 'J': 1, 'Q': 1, 'Y': 1,
-        'B': 2, 'K': 2, 'R': 2,
-        'C': 3, 'G': 3, 'L': 3, 'S': 3,
-        'D': 4, 'M': 4, 'T': 4,
-        'E': 5, 'H': 5, 'N': 5, 'X': 5,
-        'U': 6, 'V': 6, 'W': 6,
-        'O': 7, 'Z': 7,
-        'F': 8, 'P': 8
-    };
-
-    const numberMeanings = {
-        1: {
-            title: "Leadership & Independence",
-            desc: "Pioneering spirit, innovation, new beginnings, confidence, and originality. Excellent for leadership roles.",
-            dental: "Number 1 represents leadership and pioneering spirit! Great for establishing your practice as an innovative leader in dental care."
-        },
-        2: {
-            title: "Partnership & Cooperation",
-            desc: "Harmony, diplomacy, balance, sensitivity, and teamwork. Great for collaborative environments.",
-            dental: "Number 2 brings harmony and cooperation! Perfect for creating a peaceful, patient-centered environment."
-        },
-        3: {
-            title: "Creativity & Expression",
-            desc: "Communication, joy, artistic expression, and social interaction. Perfect for creative and service fields.",
-            dental: "Number 3 brings creativity and excellent communication! Perfect for patient interactions and expressing the art of dentistry."
-        },
-        4: {
-            title: "Stability & Foundation",
-            desc: "Structure, practicality, hard work, organization, and reliability. Builds solid foundations.",
-            dental: "Number 4 brings stability and reliability! Your practice will be known for consistent, dependable care."
-        },
-        5: {
-            title: "Freedom & Change",
-            desc: "Adventure, versatility, progress, dynamic energy, and adaptability. Embraces change and innovation.",
-            dental: "Number 5 represents adaptability and progress! Excellent for a modern, forward-thinking dental practice."
-        },
-        6: {
-            title: "Harmony & Responsibility",
-            desc: "Nurturing, service, healing, compassion, and care. Perfect for healthcare and service professions.",
-            dental: "Number 6 is excellent for healthcare and dental practices! It represents nurturing, healing, responsibility, and compassionate service - perfect energies for patient care and building trust in your dental practice."
-        },
-        7: {
-            title: "Wisdom & Spirituality",
-            desc: "Analysis, introspection, perfection, trust, and inner wisdom. Seeks deeper understanding.",
-            dental: "Number 7 brings wisdom and precision! Perfect for the technical excellence required in dental procedures."
-        },
-        8: {
-            title: "Power & Success",
-            desc: "Abundance, authority, material success, achievement, and business acumen. Strong business energy.",
-            dental: "Number 8 brings powerful business success energy! It represents authority, abundance, and material achievement - excellent for building a thriving and respected dental practice."
-        },
-        9: {
-            title: "Completion & Humanitarianism",
-            desc: "Universal love, wisdom, completion, and service to humanity. Selfless service orientation.",
-            dental: "Number 9 represents completion and humanitarian service! Excellent for a practice focused on community health and service."
-        },
-        11: {
-            title: "Master Number - Illumination",
-            desc: "Spiritual insight, intuition, enlightenment, and inspiration. Highly spiritual and visionary.",
-            dental: "Master Number 11 brings spiritual illumination and intuition! Your practice can inspire and enlighten patients about oral health."
-        },
-        22: {
-            title: "Master Number - Master Builder",
-            desc: "Large endeavors, practical idealism, and manifesting dreams into reality.",
-            dental: "Master Number 22 is the Master Builder! Your practice has the potential to build something truly significant in dental care."
-        },
-        33: {
-            title: "Master Number - Master Teacher",
-            desc: "Compassion, blessing, service, and healing on a grand scale.",
-            dental: "Master Number 33 is the Master Teacher! Your practice can serve and heal the community on a profound level."
-        }
-    };
-
-    function reduceNumber(num) {
-        while (num > 9 && num !== 11 && num !== 22 && num !== 33) {
-            num = num.toString().split('').reduce((a, b) => a + parseInt(b), 0);
-        }
-        return num;
-    }
-
-    function buildPyramid(text) {
-        const cleanText = text.toUpperCase().replace(/[^A-Z]/g, '');
-        if (!cleanText) return null;
-
-        const letters = cleanText.split('');
-        let currentRow = letters.map(char => chaldeanChart[char] || 0);
-
-        const pyramid = [
-            { type: 'letters', values: letters },
-            { type: 'numbers', values: [...currentRow] }
-        ];
-
-        while (currentRow.length > 1) {
-            const nextRow = [];
-            for (let i = 0; i < currentRow.length - 1; i++) {
-                const sum = currentRow[i] + currentRow[i + 1];
-                nextRow.push(reduceNumber(sum));
+        const numberMeanings = {
+            1: {
+                title: "Leadership & Independence",
+                desc: "Pioneering spirit, innovation, new beginnings, confidence, and originality. Excellent for leadership roles.",
+                dental: "Number 1 represents leadership and pioneering spirit! Great for establishing your practice as an innovative leader in dental care."
+            },
+            2: {
+                title: "Partnership & Cooperation",
+                desc: "Harmony, diplomacy, balance, sensitivity, and teamwork. Great for collaborative environments.",
+                dental: "Number 2 brings harmony and cooperation! Perfect for creating a peaceful, patient-centered environment."
+            },
+            3: {
+                title: "Creativity & Expression",
+                desc: "Communication, joy, artistic expression, and social interaction. Perfect for creative and service fields.",
+                dental: "Number 3 brings creativity and excellent communication! Perfect for patient interactions and expressing the art of dentistry."
+            },
+            4: {
+                title: "Stability & Foundation",
+                desc: "Structure, practicality, hard work, organization, and reliability. Builds solid foundations.",
+                dental: "Number 4 brings stability and reliability! Your practice will be known for consistent, dependable care."
+            },
+            5: {
+                title: "Freedom & Change",
+                desc: "Adventure, versatility, progress, dynamic energy, and adaptability. Embraces change and innovation.",
+                dental: "Number 5 represents adaptability and progress! Excellent for a modern, forward-thinking dental practice."
+            },
+            6: {
+                title: "Harmony & Responsibility",
+                desc: "Nurturing, service, healing, compassion, and care. Perfect for healthcare and service professions.",
+                dental: "Number 6 is excellent for healthcare and dental practices! It represents nurturing, healing, responsibility, and compassionate service - perfect energies for patient care and building trust in your dental practice."
+            },
+            7: {
+                title: "Wisdom & Spirituality",
+                desc: "Analysis, introspection, perfection, trust, and inner wisdom. Seeks deeper understanding.",
+                dental: "Number 7 brings wisdom and precision! Perfect for the technical excellence required in dental procedures."
+            },
+            8: {
+                title: "Power & Success",
+                desc: "Abundance, authority, material success, achievement, and business acumen. Strong business energy.",
+                dental: "Number 8 brings powerful business success energy! It represents authority, abundance, and material achievement - excellent for building a thriving and respected dental practice."
+            },
+            9: {
+                title: "Completion & Humanitarianism",
+                desc: "Universal love, wisdom, completion, and service to humanity. Selfless service orientation.",
+                dental: "Number 9 represents completion and humanitarian service! Excellent for a practice focused on community health and service."
+            },
+            11: {
+                title: "Master Number - Illumination",
+                desc: "Spiritual insight, intuition, enlightenment, and inspiration. Highly spiritual and visionary.",
+                dental: "Master Number 11 brings spiritual illumination and intuition! Your practice can inspire and enlighten patients about oral health."
+            },
+            22: {
+                title: "Master Number - Master Builder",
+                desc: "Large endeavors, practical idealism, and manifesting dreams into reality.",
+                dental: "Master Number 22 is the Master Builder! Your practice has the potential to build something truly significant in dental care."
+            },
+            33: {
+                title: "Master Number - Master Teacher",
+                desc: "Compassion, blessing, service, and healing on a grand scale.",
+                dental: "Master Number 33 is the Master Teacher! Your practice can serve and heal the community on a profound level."
             }
-            pyramid.push({ type: 'reduced', values: nextRow });
-            currentRow = nextRow;
+        };
+
+        function reduceNumber(num) {
+            while (num > 9 && num !== 11 && num !== 22 && num !== 33) {
+                num = num.toString().split('').reduce((a, b) => a + parseInt(b), 0);
+            }
+            return num;
         }
 
-        return pyramid;
-    }
+        function buildPyramid(text) {
+            const cleanText = text.toUpperCase().replace(/[^A-Z]/g, '');
+            if (!cleanText) return null;
 
-    function displayPyramid(pyramid, name) {
-        const pyramidDisplay = document.getElementById('pyramidDisplay');
-        pyramidDisplay.innerHTML = '';
+            const letters = cleanText.split('');
+            let currentRow = letters.map(char => chaldeanChart[char] || 0);
 
-        pyramid.forEach((row, rowIndex) => {
-            const rowDiv = document.createElement('div');
-            rowDiv.className = 'pyramid-row';
+            const pyramid = [
+                { type: 'letters', values: letters },
+                { type: 'numbers', values: [...currentRow] }
+            ];
 
-            const isLastRow = rowIndex === pyramid.length - 1;
-            const isFirstRow = rowIndex === 0;
-            const isSecondRow = rowIndex === 1;
-
-            row.values.forEach(value => {
-                const cell = document.createElement('div');
-                
-                if (isLastRow) {
-                    cell.className = 'pyramid-cell final-cell';
-                } else if (isFirstRow) {
-                    cell.className = 'pyramid-cell letter-cell';
-                } else if (isSecondRow) {
-                    cell.className = 'pyramid-cell number-cell';
-                } else {
-                    cell.className = 'pyramid-cell reduced-cell';
+            while (currentRow.length > 1) {
+                const nextRow = [];
+                for (let i = 0; i < currentRow.length - 1; i++) {
+                    const sum = currentRow[i] + currentRow[i + 1];
+                    nextRow.push(reduceNumber(sum));
                 }
-                
-                cell.textContent = value;
-                rowDiv.appendChild(cell);
+                pyramid.push({ type: 'reduced', values: nextRow });
+                currentRow = nextRow;
+            }
+
+            return pyramid;
+        }
+
+        function displayPyramid(pyramid, name) {
+            const pyramidDisplay = document.getElementById('pyramidDisplay');
+            pyramidDisplay.innerHTML = '';
+
+            pyramid.forEach((row, rowIndex) => {
+                const rowDiv = document.createElement('div');
+                rowDiv.className = 'pyramid-row';
+
+                const isLastRow = rowIndex === pyramid.length - 1;
+                const isFirstRow = rowIndex === 0;
+                const isSecondRow = rowIndex === 1;
+
+                row.values.forEach(value => {
+                    const cell = document.createElement('div');
+                    
+                    if (isLastRow) {
+                        cell.className = 'pyramid-cell final-cell';
+                    } else if (isFirstRow) {
+                        cell.className = 'pyramid-cell letter-cell';
+                    } else if (isSecondRow) {
+                        cell.className = 'pyramid-cell number-cell';
+                    } else {
+                        cell.className = 'pyramid-cell reduced-cell';
+                    }
+                    
+                    cell.textContent = value;
+                    rowDiv.appendChild(cell);
+                });
+
+                // Add sum total at the end of the first number row (second row overall)
+                if (isSecondRow) {
+                    const sum = row.values.reduce((a, b) => a + b, 0);
+                    
+                    // Add equals sign
+                    const equalsCell = document.createElement('div');
+                    equalsCell.className = 'pyramid-cell';
+                    equalsCell.style.cssText = 'color: #92400e; font-size: clamp(1em, 4vw, 1.5em); font-weight: bold; border: none; background: transparent;';
+                    equalsCell.textContent = '=';
+                    rowDiv.appendChild(equalsCell);
+                    
+                    // Add sum value
+                    const sumCell = document.createElement('div');
+                    sumCell.className = 'pyramid-cell number-cell';
+                    sumCell.style.cssText = 'background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: white; border-color: #b45309; font-weight: bold;';
+                    sumCell.textContent = sum;
+                    rowDiv.appendChild(sumCell);
+                }
+
+                pyramidDisplay.appendChild(rowDiv);
             });
 
-            pyramidDisplay.appendChild(rowDiv);
+            const nameDisplay = document.getElementById('businessNameDisplay');
+            nameDisplay.innerHTML = `
+                <h2>${name}</h2>
+                <p>Traditional Adjacent Number Addition Method</p>
+            `;
+
+            const finalNumber = pyramid[pyramid.length - 1].values[0];
+            const meaning = numberMeanings[finalNumber];
+            const meaningSection = document.getElementById('meaningSection');
+            meaningSection.innerHTML = `
+                <h3>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#047857" stroke-width="2">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                    </svg>
+                    Final Destiny Number: ${finalNumber}
+                </h3>
+                <h4>${meaning.title}</h4>
+                <p>${meaning.desc}</p>
+                <div class="dental-note">
+                    <h4>Application:</h4>
+                    <p>${meaning.dental}</p>
+                </div>
+            `;
+        }
+
+        function initChart() {
+            const chartGrid = document.getElementById('chartGrid');
+            chartGrid.innerHTML = '';
+
+            for (let num = 1; num <= 8; num++) {
+                const letters = Object.entries(chaldeanChart)
+                    .filter(([_, value]) => value === num)
+                    .map(([letter]) => letter)
+                    .join(', ');
+
+                const chartItem = document.createElement('div');
+                chartItem.className = 'chart-item';
+                chartItem.innerHTML = `
+                    <div class="chart-number">${num}</div>
+                    <div class="chart-letters">${letters}</div>
+                `;
+                chartGrid.appendChild(chartItem);
+            }
+        }
+
+        function calculatePyramid() {
+            const input = document.getElementById('nameInput').value.trim();
+            
+            if (!input) {
+                alert('Please enter a name or business name!');
+                return;
+            }
+
+            const pyramid = buildPyramid(input);
+            
+            if (!pyramid) {
+                alert('Please enter valid alphabetic characters!');
+                return;
+            }
+
+            displayPyramid(pyramid, input.toUpperCase());
+            document.getElementById('resultSection').classList.add('active');
+            
+            document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        document.getElementById('nameInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculatePyramid();
+            }
         });
 
-        const nameDisplay = document.getElementById('businessNameDisplay');
-        nameDisplay.innerHTML = `
-            <h2>${name}</h2>
-            <p>Traditional Adjacent Number Addition Method</p>
-        `;
+        initChart();
 
-        const finalNumber = pyramid[pyramid.length - 1].values[0];
-        const meaning = numberMeanings[finalNumber];
-        const meaningSection = document.getElementById('meaningSection');
-        meaningSection.innerHTML = `
-            <h3>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#047857" stroke-width="2">
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                </svg>
-                Final Destiny Number: ${finalNumber}
-            </h3>
-            <h4>${meaning.title}</h4>
-            <p>${meaning.desc}</p>
-            <div class="dental-note">
-                <h4>Application:</h4>
-                <p>${meaning.dental}</p>
-            </div>
-        `;
-    }
-
-    function initChart() {
-        const chartGrid = document.getElementById('chartGrid');
-        chartGrid.innerHTML = '';
-
-        for (let num = 1; num <= 8; num++) {
-            const letters = Object.entries(chaldeanChart)
-                .filter(([_, value]) => value === num)
-                .map(([letter]) => letter)
-                .join(', ');
-
-            const chartItem = document.createElement('div');
-            chartItem.className = 'chart-item';
-            chartItem.innerHTML = `
-                <div class="chart-number">${num}</div>
-                <div class="chart-letters">${letters}</div>
-            `;
-            chartGrid.appendChild(chartItem);
-        }
-    }
-
-    function calculatePyramid() {
-        const input = document.getElementById('nameInput').value.trim();
-        
-        if (!input) {
-            alert('Please enter a name or business name!');
-            return;
-        }
-
-        const pyramid = buildPyramid(input);
-        
-        if (!pyramid) {
-            alert('Please enter valid alphabetic characters!');
-            return;
-        }
-
-        displayPyramid(pyramid, input.toUpperCase());
-        document.getElementById('resultSection').classList.add('active');
-        
-        document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    document.getElementById('nameInput').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            calculatePyramid();
-        }
-    });
-
-    initChart();
-
-    window.onload = function() {
-        document.getElementById('nameInput').value = '';
-    };
-</script>
-
-
+        window.onload = function() {
+            document.getElementById('nameInput').value = '';
+        };
+    </script>
 </body>
 </html>
